@@ -71,13 +71,7 @@ public class Sudoku {
 	private boolean rowCol(int n, int iS, int jS, int[][] grid) { 
 
 		for (int j = 0; j < 9; j++) {
-			if (grid[iS][j] == n) {
-				return false;
-			}
-		}
-
-		for (int i = 0; i < 9; i++) {
-			if (grid[i][jS] == n) {
+			if (grid[iS][j] == n || grid[j][jS] == n) {
 				return false;
 			}
 		}
@@ -110,7 +104,7 @@ public class Sudoku {
 			return;
 		}
 		
-		Sudoko sudoko;
+		Sudoku sudoku;
 		Scanner scanNumber;
 		int[][] grid = new int[9][9];
 		File numbers = new File(args[0]);
@@ -127,8 +121,8 @@ public class Sudoku {
 					}
 				}
 			}
-			sudoko = new Sudoko(grid);
-			int[][] solution = sudoko.solution();
+			sudoku = new Sudoku(grid);
+			int[][] solution = sudoku.solution();
 			for (int i = 0; i < 9; i++) {
 				for (int j = 0; j < 9; j++) {
 					System.out.print(solution[i][j] + " ");
